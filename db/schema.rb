@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema[7.0].define(version: 2023_05_15_110505) do
   create_table "profiles", force: :cascade do |t|
+    t.string "name"
     t.date "date_of_birth"
     t.integer "gender", limit: 1
     t.integer "height_in_cm"

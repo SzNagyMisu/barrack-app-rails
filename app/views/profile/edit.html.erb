@@ -1,2 +1,46 @@
-<h1>Profile#edit</h1>
-<p>Find me in app/views/profile/edit.html.erb</p>
+<h1>Profile</h1>
+
+<%= link_to 'Back', profile_path %>
+
+<%= form_with model: @profile, url: profile_path do |form| %>
+  <section>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+    <% form.object.errors.full_messages_for(:name).each do |message| %>
+      <p><%= message %></p>
+    <% end %>
+  </section>
+  <section>
+    <%= form.label :date_of_birth %>
+    <%= form.date_field :date_of_birth %>
+  </section>
+  <section>
+    <%= form.label :gender %>
+    <%= form.select :gender, Profile::GENDERS, include_blank: true %>
+  </section>
+  <section>
+    <%= form.label :height_in_cm %>
+    <%= form.number_field :height_in_cm %> cm
+    <% form.object.errors.full_messages_for(:height_in_cm).each do |message| %>
+      <p><%= message %></p>
+    <% end %>
+  </section>
+  <section>
+    <%= form.label :weight_in_kg %>
+    <%= form.number_field :weight_in_kg %> kg
+    <% form.object.errors.full_messages_for(:weight_in_kg).each do |message| %>
+      <p><%= message %></p>
+    <% end %>
+  </section>
+  <section>
+    <%= form.label :email %>
+    <%= text_field_tag :email, current_user.email, disabled: true %>
+  </section>
+  <section>
+    <%= form.label :phone %>
+    <%= form.text_field :phone %>
+  </section>
+  <section>
+    <%= form.submit %>
+  </section>
+<% end %>

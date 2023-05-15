@@ -1,2 +1,20 @@
-<h1>Profile#show</h1>
-<p>Find me in app/views/profile/show.html.erb</p>
+<h1>Profile</h1>
+
+<%= link_to 'Edit', edit_profile_path %>
+
+<dl>
+  <dt>Name</dt>
+  <dd><%= @profile.name %></dd>
+  <dt>Date of birth</dt>
+  <dd><%= @profile.date_of_birth %></dd>
+  <dt>Gender</dt>
+  <dd><%= @profile.gender %></dd>
+  <dt>Height</dt>
+  <dd><%= @profile.height_in_cm %> cm</dd>
+  <dt>Weight</dt>
+  <dd><%= @profile.weight_in_kg %> kg</dd>
+  <dt>Email</dt>
+  <dd><%= @profile.user.email %></dd>
+  <dt>Phone</dt>
+  <dd><%= @profile.phone %></dd>
+</dl>
