@@ -1,0 +1,25 @@
+<h1>Admin / Training Sessions</h1>
+
+<%= link_to 'Add', new_admin_training_session_path %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Start time</th>
+      <th>Trainer</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sessions.each do |session| %>
+      <tr>
+        <td><%= session.start_time %></td>
+        <td><%= session.trainer_name %></td>
+        <td>
+          <%= link_to 'Edit', edit_admin_training_session_path(session) %>
+          <%= button_to 'Delete', admin_training_session_path(session), method: :delete %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

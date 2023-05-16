@@ -15,4 +15,8 @@ Rails.application.routes.draw do
       patch :join
     end
   end
+
+  namespace :admin do
+    resources :training_sessions
+  end
 end
