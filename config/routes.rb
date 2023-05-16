@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  # Defines the root path route ("/")
-  # root "articles#index"
+  root "training_sessions#index"
 
   devise_for :users
 

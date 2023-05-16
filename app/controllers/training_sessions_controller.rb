@@ -1,4 +1,6 @@
 class TrainingSessionsController < ApplicationController
+  include WithLoggedInUser
+
   def index
     @sessions = params.key?(:q) ? TrainingSession.search(params[:q]) : TrainingSession.default
     @sessions = @sessions.includes :trainer
