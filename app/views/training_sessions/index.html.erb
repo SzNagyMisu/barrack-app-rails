@@ -1,0 +1,38 @@
+<h1>Training Sessions</h1>
+
+<%= form_with scope: :q, url: training_sessions_path, method: :get do |form| %>
+  <section>
+    <%= form.label :date_from %>
+    <%= form.date_field :date_from, value: @q[:date_from] %>
+  </section>
+  <section>
+    <%= form.label :date_to %>
+    <%= form.date_field :date_to, value: @q[:date_to] %>
+  </section>
+  <section>
+    <%= form.label :trainer %>
+    <%= form.text_field :trainer, value: @q[:trainer] %>
+  </section>
+  <section>
+    <%= form.submit 'Search' %>
+  </section>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Start time</th>
+      <th>Trainer</th>
+      <th>Register</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sessions.each do |session| %>
+      <tr>
+        <td><%= session.start_time %></td>
+        <td><%= session.trainer_name %></td>
+        <td><%= button_to 'Register', register_training_session_path(session) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
