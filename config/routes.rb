@@ -11,6 +11,9 @@ Rails.application.routes.draw do
       post :register
       delete :unregister
     end
-    post ':code/join', action: :join, on: :collection, constraints: { code: /[a-z0-9]{6}/ }
+    collection do
+      get :join, action: :join_form
+      patch :join
+    end
   end
 end

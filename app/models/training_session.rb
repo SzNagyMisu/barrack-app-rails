@@ -1,6 +1,11 @@
 class TrainingSession < ApplicationRecord
   belongs_to :trainer
 
+  has_many :registered_training_session_users, -> { registered }, class_name: :TrainingSessionUser
+  has_many :joined_training_session_users, -> { joined }, class_name: :TrainingSessionUser
+  has_many :registered_users, class_name: :User, through: :registered_training_session_users, source: :user
+  has_many :joined_users, class_name: :User, through: :joined_training_session_users, source: :user
+
   before_create :set_code
 
   validates :start_time, presence: true

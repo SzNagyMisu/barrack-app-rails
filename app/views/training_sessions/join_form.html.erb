@@ -1,0 +1,11 @@
+<h1>Join Training Session</h1>
+
+<%= form_with url: join_training_sessions_path, method: :patch do |form| %>
+  <section>
+    <%= form.label :code %>
+    <%= form.text_field :code %>
+  </section>
+  <section>
+    <%= form.submit 'Join' %>
+  </section>
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_16_043153) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_16_112618) do
   create_table "comments", force: :cascade do |t|
     t.text "body"
     t.integer "user_id", null: false
@@ -41,6 +41,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_16_043153) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "training_session_users", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "training_session_id", null: false
+    t.integer "state", limit: 1
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["training_session_id"], name: "index_training_session_users_on_training_session_id"
+    t.index ["user_id"], name: "index_training_session_users_on_user_id"
+  end
+
   create_table "training_sessions", force: :cascade do |t|
     t.string "code"
     t.datetime "start_time"
@@ -63,5 +73,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_16_043153) do
   end
 
   add_foreign_key "comments", "users"
+  add_foreign_key "training_session_users", "training_sessions"
+  add_foreign_key "training_session_users", "users"
   add_foreign_key "training_sessions", "trainers"
 end

@@ -31,7 +31,13 @@
       <tr>
         <td><%= session.start_time %></td>
         <td><%= session.trainer_name %></td>
-        <td><%= button_to 'Register', register_training_session_path(session) %></td>
+        <td>
+          <% if @registered_session_ids.include? session.id %>
+            <%= button_to 'Unregister', unregister_training_session_path(session), method: :delete %>
+          <% else %>
+            <%= button_to 'Register', register_training_session_path(session) %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
