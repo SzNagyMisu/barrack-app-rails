@@ -13,6 +13,7 @@
 <p>Phone: <%= @user.profile.phone %></p>
 <p>Registered training sessions: <%= @user.registered_training_sessions.size %></p>
 <p>Joined training sessions: <%= @user.joined_training_sessions.size %></p>
+<P>Balance: <%= @user.balance.amount %> (<%= link_to 'Update', edit_admin_user_balance_path(@user) %>)
 
 <h2>Comments</h2>
 

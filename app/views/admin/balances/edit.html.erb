@@ -1,0 +1,19 @@
+<h1>Admin / Balances</h1>
+
+<p>User: <%= current_user.profile.name %></p>
+<p>Current balance: <%= @balance.amount %></p>
+
+<%= form_with model: @balance, url: admin_user_balance_path(current_user), data: { turbo: false } do |form| %>
+    <section>
+        <% form.object.errors.full_messages.each do |message| %>
+            <p><%= message %></p>
+        <% end %>
+    </section>
+    <section>
+        <%= form.label :plus_amount %>
+        <%= form.number_field :plus_amount %>
+    </section>
+    <section>
+        <%= form.submit %>
+    </section>
+<% end %>
