@@ -18,5 +18,6 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :training_sessions
+    resources :users, only: [ :index, :show ]
   end
 end

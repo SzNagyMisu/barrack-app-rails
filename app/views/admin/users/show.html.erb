@@ -1,0 +1,15 @@
+<h1>Admin / User</h1>
+
+<%= link_to 'Back to list', admin_users_path %>
+
+<h2>Data</h2>
+
+<p>Name: <%= @user.profile.name %></p>
+<p>Date of birth: <%= @user.profile.date_of_birth %></p>
+<p>Gender: <%= @user.profile.gender %></p>
+<p>Height: <%= @user.profile.height_in_cm %> cm</p>
+<p>Weight: <%= @user.profile.weight_in_kg %> kg</p>
+<p>Email: <%= @user.email %></p>
+<p>Phone: <%= @user.profile.phone %></p>
+<p>Registered training sessions: <%= @user.registered_training_sessions.size %></p>
+<p>Joined training sessions: <%= @user.joined_training_sessions.size %></p>
