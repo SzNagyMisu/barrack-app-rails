@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>Code</th>
       <th>Start time</th>
       <th>Trainer</th>
       <th>Actions</th>
@@ -13,11 +14,20 @@
   <tbody>
     <% @sessions.each do |session| %>
       <tr>
+        <td><%= session.code %></td>
         <td><%= session.start_time %></td>
         <td><%= session.trainer_name %></td>
         <td>
           <%= link_to 'Edit', edit_admin_training_session_path(session) %>
-          <%= button_to 'Delete', admin_training_session_path(session), method: :delete %>
+          <%= button_to 'Delete',
+            admin_training_session_path(session),
+            method: :delete,
+            form: {
+              data: {
+                turbo_confirm: 'Are you sure?',
+              },
+            }
+          %>
         </td>
       </tr>
     <% end %>

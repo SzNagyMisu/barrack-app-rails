@@ -1,0 +1,19 @@
+<%= form_with model: session, url: url do |form| %>
+  <section>
+    <%= form.label :start_time %>
+    <%= form.datetime_field :start_time %>
+    <% form.object.errors.full_messages_for(:start_time).each do |message| %>
+      <p><%= message %></p>
+    <% end %>
+  </section>
+  <section>
+    <%= form.label :trainer_id %>
+    <%= form.collection_select :trainer_id, Trainer.all, :id, :name, include_blank: true %>
+    <% form.object.errors.full_messages_for(:trainer).each do |message| %>
+      <p><%= message %></p>
+    <% end %>
+  </section>
+  <section>
+    <%= form.submit %>
+  </section>
+<% end %>

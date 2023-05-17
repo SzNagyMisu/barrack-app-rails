@@ -9,6 +9,7 @@ class TrainingSession < ApplicationRecord
   before_create :set_code
 
   validates :start_time, presence: true
+  validate :start_time_in_the_future, on: :create
 
   default_scope { order :start_time }
 
@@ -30,5 +31,11 @@ class TrainingSession < ApplicationRecord
 
     def set_code
       send :code=, SecureRandom.alphanumeric(6).downcase
+    end
+
+    def start_time_in_the_future
+      if start_time < Time.now
+        errors.add :start_time, 'Cannot be in the past'
+      end
     end
 end
