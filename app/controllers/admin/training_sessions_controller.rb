@@ -31,7 +31,7 @@ class Admin::TrainingSessionsController < ApplicationController
     @session = TrainingSession.find params[:id]
     @session.update! session_params
     redirect_to admin_training_sessions_path
-  rescue
+  rescue ActiveRecord::RecordInvalid
     render :edit
   end
 
@@ -44,6 +44,6 @@ class Admin::TrainingSessionsController < ApplicationController
   private
 
     def session_params
-      params.require(:training_session).permit :start_time, :trainer_id
+      params.require(:training_session).permit :start_time, :trainer_id, :price
     end
 end

@@ -23,6 +23,7 @@
     <tr>
       <th>Start time</th>
       <th>Trainer</th>
+      <th>Price</th>
       <th>Register</th>
     </tr>
   </thead>
@@ -31,6 +32,7 @@
       <tr>
         <td><%= session.start_time %></td>
         <td><%= session.trainer_name %></td>
+        <td><%= session.price %></td>
         <td>
           <% if @registered_session_ids.include? session.id %>
             <%= button_to 'Unregister', unregister_training_session_path(session), method: :delete %>

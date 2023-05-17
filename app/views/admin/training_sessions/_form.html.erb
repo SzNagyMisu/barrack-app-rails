@@ -14,6 +14,13 @@
     <% end %>
   </section>
   <section>
+    <%= form.label :price %>
+    <%= form.number_field :price %>
+    <% form.object.errors.full_messages_for(:price).each do |message| %>
+      <p><%= message %></p>
+    <% end %>
+  </section>
+  <section>
     <%= form.submit %>
   </section>
 <% end %>

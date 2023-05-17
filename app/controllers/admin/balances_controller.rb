@@ -9,6 +9,6 @@ class Admin::BalancesController < ApplicationController
     redirect_to admin_user_path(current_user)
   rescue ActiveRecord::RecordInvalid
     @balance.reload
-    render :edit
+    render :edit, status: :unprocessable_entity
   end
 end

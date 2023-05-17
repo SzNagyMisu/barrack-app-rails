@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_17_104436) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_17_194040) do
   create_table "balances", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "amount", default: 0, null: false
@@ -65,6 +65,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_17_104436) do
     t.integer "trainer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "price", default: 0, null: false
     t.index ["trainer_id"], name: "index_training_sessions_on_trainer_id"
   end
 

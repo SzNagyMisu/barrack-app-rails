@@ -9,6 +9,7 @@ class TrainingSession < ApplicationRecord
   before_create :set_code
 
   validates :start_time, presence: true
+  validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }
   validate :start_time_in_the_future, on: :create
 
   default_scope { order :start_time }

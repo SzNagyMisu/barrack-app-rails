@@ -2,11 +2,11 @@ class ProfileController < ApplicationController
   include WithLoggedInUser
 
   def show
-    @profile = current_user.profile || current_user.create_profile!
+    @profile = current_user.profile
   end
 
   def edit
-    @profile = current_user.profile || current_user.create_profile!
+    @profile = current_user.profile
   end
 
   def update
@@ -14,8 +14,8 @@ class ProfileController < ApplicationController
 
     @profile.update! profile_params
     redirect_to profile_path
-  rescue
-      render :edit, status: :unprocessable_entity
+  rescue ActiveRecord::RecordInvalid
+    render :edit, status: :unprocessable_entity
   end
 
   private

@@ -14,4 +14,9 @@ class User < ApplicationRecord
   has_many :joined_training_session_users, -> { joined }, class_name: :TrainingSessionUser
   has_many :registered_training_sessions, class_name: :TrainingSession, through: :registered_training_session_users, source: :training_session
   has_many :joined_training_sessions, class_name: :TrainingSession, through: :joined_training_session_users, source: :training_session
+
+  after_create do
+    create_balance!
+    create_profile!
+  end
 end
