@@ -13,3 +13,22 @@
 <p>Phone: <%= @user.profile.phone %></p>
 <p>Registered training sessions: <%= @user.registered_training_sessions.size %></p>
 <p>Joined training sessions: <%= @user.joined_training_sessions.size %></p>
+
+<h2>Comments</h2>
+
+<%= form_with model: @user.received_comments.build, url: admin_user_comments_path(@user) do |form| %>
+  <section>
+    <%= form.label :body %>
+    <%= form.text_area :body %>
+  </section>
+  <section>
+    <%= form.submit %>
+  </section>
+<% end %>
+
+<% @user.received_comments.select(&:persisted?).reverse_each do |comment| %>
+  <article>
+    <p><%= comment.commenter_email %> wrote at <%= comment.created_at %></p>
+    <p><%= comment.body %></p>
+  </article>
+<% end %>

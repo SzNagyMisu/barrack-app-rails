@@ -6,6 +6,6 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
-    @user = User.find params[:id]
+    @user = User.includes(received_comments: :commenter).find params[:id]
   end
 end

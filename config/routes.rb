@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :training_sessions
-    resources :users, only: [ :index, :show ]
+    resources :users, only: [ :index, :show ] do
+      resources :comments, only: :create
+    end
   end
 end
