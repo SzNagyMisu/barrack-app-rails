@@ -21,12 +21,14 @@ class TrainingSessionsController < ApplicationController
   end
 
   def join
-    @session = TrainingSession.find_by code: params[:code].downcase
-    joined_user_ids = @session.joined_user_ids.append(current_user.id).uniq
-    @session.joined_user_ids = joined_user_ids
-  rescue
+    @session = TrainingSession.find_by! code: params[:code].downcase
+    @session.join_user current_user
+  rescue ActiveRecord::RecordNotFound
     flash.now[:alert] = 'Wrong training session code'
-    render :join_form
+    render :join_form, status: :not_found
+  rescue ActiveRecord::RecordInvalid
+    flash.now[:alert] = 'Not enough balance to attend training session'
+    render :join_form, status: :payment_required
   end
 
   private

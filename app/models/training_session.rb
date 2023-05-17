@@ -28,6 +28,10 @@ class TrainingSession < ApplicationRecord
     trainer.name
   end
 
+  def join_user user
+    send :joined_user_ids=, joined_user_ids.append(user.id).uniq
+  end
+
   private
 
     def set_code

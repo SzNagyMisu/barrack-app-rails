@@ -6,4 +6,8 @@ class Balance < ApplicationRecord
   def add! plus_amount
     update! amount: amount + plus_amount
   end
+
+  def subtract! minus_amount
+    update! amount: amount - minus_amount
+  end
 end

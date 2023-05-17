@@ -1,5 +1,7 @@
 <h1>Join Training Session</h1>
 
+<p>Current balance: <%= current_user.balance.amount %></p>
+
 <%= form_with url: join_training_sessions_path, method: :patch, data: {turbo: false} do |form| %>
   <section>
     <%= form.label :code %>
