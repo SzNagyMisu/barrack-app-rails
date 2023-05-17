@@ -5,6 +5,12 @@ class Admin::TrainingSessionsController < ApplicationController
     @sessions = TrainingSession.default
   end
 
+  def show
+    @session = TrainingSession
+      .includes(registered_users: :profile, joined_users: :profile)
+      .find params[:id]
+  end
+
   def new
     @session = TrainingSession.new
   end

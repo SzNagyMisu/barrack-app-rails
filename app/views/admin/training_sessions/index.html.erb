@@ -14,7 +14,7 @@
   <tbody>
     <% @sessions.each do |session| %>
       <tr>
-        <td><%= session.code %></td>
+        <td><%= link_to session.code.upcase, admin_training_session_path(session) %></td>
         <td><%= session.start_time %></td>
         <td><%= session.trainer_name %></td>
         <td>

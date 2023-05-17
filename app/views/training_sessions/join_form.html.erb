@@ -1,6 +1,6 @@
 <h1>Join Training Session</h1>
 
-<%= form_with url: join_training_sessions_path, method: :patch do |form| %>
+<%= form_with url: join_training_sessions_path, method: :patch, data: {turbo: false} do |form| %>
   <section>
     <%= form.label :code %>
     <%= form.text_field :code %>

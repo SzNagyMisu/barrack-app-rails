@@ -21,7 +21,7 @@ class TrainingSessionsController < ApplicationController
   end
 
   def join
-    @session = TrainingSession.find_by code: params[:code]
+    @session = TrainingSession.find_by code: params[:code].downcase
     joined_user_ids = @session.joined_user_ids.append(current_user.id).uniq
     @session.joined_user_ids = joined_user_ids
   rescue
