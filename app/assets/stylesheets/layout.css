@@ -1,0 +1,41 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: 1px solid black;
+}
+
+nav a img.logo {
+    width: 75px;
+}
+
+nav ol {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    margin: 0;
+}
+
+nav ol > li a,
+nav ol > li button {
+    display: block;
+    font-size: 18px;
+    line-height: 45px;
+    padding: 15px;
+    color: black;
+    text-decoration: underline;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+
+nav ol > li a:hover,
+nav ol > li button:hover {
+    text-decoration: none;
+}
+
+main {
+    margin: 30px 15px;
+}

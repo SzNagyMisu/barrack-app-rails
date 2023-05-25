@@ -11,8 +11,23 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <nav>
+      <section>
+        <%= link_to root_path do %>
+          <%= image_tag 'logo', class: 'logo' %>
+        <% end %>
+      </section>
+      <section>
+        <ol>
+          <li><%= link_to 'Profile', profile_path %></li>
+          <li><%= button_to 'Logout', destroy_user_session_path, method: :delete %></li>
+        </ol>
+      </section>
+    </nav>
+    <main>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <%= yield %>
+    </main>
   </body>
 </html>
