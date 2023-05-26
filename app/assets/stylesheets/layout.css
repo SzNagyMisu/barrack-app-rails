@@ -37,5 +37,6 @@ nav ol > li button:hover {
 }
 
 main {
-    margin: 30px 15px;
+    width: 800px;
+    margin: 30px auto;
 }
