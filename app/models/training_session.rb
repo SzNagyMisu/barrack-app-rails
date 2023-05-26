@@ -25,7 +25,7 @@ class TrainingSession < ApplicationRecord
   scope :default, -> { where start_time: Date.today.. }
 
   def trainer_name
-    trainer.name
+    trainer&.name
   end
 
   def join_user user
