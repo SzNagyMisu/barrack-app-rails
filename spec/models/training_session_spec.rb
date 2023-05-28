@@ -20,7 +20,7 @@ RSpec.describe TrainingSession, type: :model do
   end
 
   describe 'HOOKS' do
-    subject { described_class.new start_time: 1.day.from_now, price: 1000, trainer: Trainer.new(name: 'Test Trainer') }
+    subject { FactoryBot.build :training_session }
 
     it 'sets `code` on create.' do
       expect { subject.save! }.to change(subject, :code).from(nil).to /\w{6}/
