@@ -4,7 +4,30 @@ RSpec.describe TrainingSession, type: :model do
   describe 'VALIDATIONS'
 
   describe 'CLASS METHODS, SCOPES' do
-    describe 'default scope'
+    describe 'default scope' do
+      it 'returns the records ordered by `start_time`.' do
+        session_1 = FactoryBot.create :training_session, start_time: 3.days.from_now
+        session_2 = FactoryBot.create :training_session, start_time: 2.days.from_now
+        session_3 = FactoryBot.create :training_session, start_time: 4.days.from_now
+
+        expect(TrainingSession.pluck :code).to eq [ session_2.code, session_1.code, session_3.code ]
+      end
+    end
+
+    describe '.default' do
+      it 'returns only records that have `start_time` today or in the future.' do
+        # cannot create a session in the past because of validation rules
+        session_1 = FactoryBot.create :training_session, start_time: 2.days.from_now
+        session_1.start_time = 2.days.ago
+        session_1.save validate: false
+
+        session_2 = FactoryBot.create :training_session, start_time: 2.days.from_now
+        session_3 = FactoryBot.create :training_session, start_time: 3.days.from_now
+        session_4 = FactoryBot.create :training_session, start_time: 4.days.from_now
+
+        expect(TrainingSession.default.pluck :code).to eq [session_2, session_3, session_4].map(&:code)
+      end
+    end
   end
 
   describe 'INSTANCE METHODS' do
