@@ -1,7 +1,28 @@
 require 'rails_helper'
 
 RSpec.describe TrainingSession, type: :model do
-  describe 'VALIDATIONS'
+  describe 'VALIDATIONS' do
+    it { should validate_presence_of :start_time }
+    it { should validate_presence_of :price }
+    it { should validate_numericality_of(:price).is_greater_than_or_equal_to 0 }
+
+    context 'on create' do
+      it 'validates that start time is in the future' do
+        expect {
+          FactoryBot.create :training_session, start_time: 1.second.ago
+        }.to raise_exception ActiveRecord::RecordInvalid, /Start time cannot be in the past/
+      end
+    end
+
+    context 'on update' do
+      it 'does not validate that start time is in the future' do
+        session = FactoryBot.create :training_session
+        expect {
+          session.update! start_time: 1.day.ago
+        }.not_to raise_exception
+      end
+    end
+  end
 
   describe 'CLASS METHODS, SCOPES' do
     describe 'default scope' do

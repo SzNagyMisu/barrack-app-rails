@@ -10,7 +10,7 @@ class TrainingSession < ApplicationRecord
 
   validates :start_time, presence: true
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }
-  validate :start_time_in_the_future, on: :create
+  validate :start_time_in_the_future_validation, on: :create
 
   default_scope { order :start_time }
 
@@ -38,9 +38,9 @@ class TrainingSession < ApplicationRecord
       send :code=, SecureRandom.alphanumeric(6).downcase
     end
 
-    def start_time_in_the_future
-      if start_time < Time.now
-        errors.add :start_time, 'Cannot be in the past'
+    def start_time_in_the_future_validation
+      if start_time&.< Time.now
+        errors.add :start_time, 'cannot be in the past'
       end
     end
 end
