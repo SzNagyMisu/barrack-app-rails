@@ -75,3 +75,5 @@ group :test do
   gem "webdrivers"
   gem 'shoulda-matchers', '~> 5.0'
 end
+
+gem 'admin', path: 'engines/admin'

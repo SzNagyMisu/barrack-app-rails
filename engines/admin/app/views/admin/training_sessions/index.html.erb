@@ -1,0 +1,37 @@
+<h1>Admin / Training Sessions</h1>
+
+<%= link_to 'Add', new_training_session_path %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Start time</th>
+      <th>Trainer</th>
+      <th>Price</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sessions.each do |session| %>
+      <tr>
+        <td><%= link_to session.code.upcase, training_session_path(session) %></td>
+        <td><%= session.start_time %></td>
+        <td><%= session.trainer_name %></td>
+        <td><%= session.price %></td>
+        <td>
+          <%= link_to 'Edit', edit_training_session_path(session) %>
+          <%= button_to 'Delete',
+            training_session_path(session),
+            method: :delete,
+            form: {
+              data: {
+                turbo_confirm: 'Are you sure?',
+              },
+            }
+          %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
